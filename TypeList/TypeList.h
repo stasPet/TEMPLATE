@@ -2,9 +2,6 @@
 #define DEFINE_TYPE_LIST
 
 template< typename ... Types >
-struct TypeList
-{
-  using Type = Types ... ;
-};
+struct TypeList {};
 
 #endif

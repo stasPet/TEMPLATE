@@ -84,7 +84,5 @@ using MyList = TypeList< bool, char, short, int, double >;
 int main()
 {
   Back< MyList >::Type t;
-
-  //PopFront< MyList >::Type t;
   return 0;
 }

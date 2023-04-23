@@ -5,7 +5,7 @@
 #include "TypeListSize.h"
 
 template< typename List >
-struct Back : ElementByIndex< List, /*TypeListSize< List >::value*/ sizeof ... ( List ) - 1 >
+struct Back : ElementByIndex< List, TypeListSize< List >::value - 1 >
 {
   
 };
