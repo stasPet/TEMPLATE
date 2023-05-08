@@ -20,7 +20,17 @@ public:
     return head;
   }
 
-  Tuple< Tail ... > getTail()
+  Tuple< Tail ... > & getTail()
+  {
+    return tail;
+  }
+
+  Head const & getHead() const
+  {
+    return head;
+  }
+
+  Tuple< Tail ... > const & getTail() const
   {
     return tail;
   }
