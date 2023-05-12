@@ -3,7 +3,7 @@
 
 #include "TypeList.h"
 
-template< typename Head, typename Tail >
+template< typename Element, typename List >
 struct PushFront;
 
 template< typename ... Head, typename Tail >
