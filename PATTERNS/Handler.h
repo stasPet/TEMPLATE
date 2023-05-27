@@ -12,8 +12,8 @@ struct Handler
 
   void handle()
   {
-    handler.handle();
-    next.handle();
+    if ( handler.handle() )
+      next.handle();
   }
 };
 
