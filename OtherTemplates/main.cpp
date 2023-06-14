@@ -3,7 +3,7 @@
 int main()
 {
   BreadSlicer< Policy_3_is< DefaultPolicy_5 > > bs;
-  bs.show();
+  // bs.show();
 
   return 1;
 }
