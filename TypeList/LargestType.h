@@ -1,7 +1,6 @@
 #ifndef DEFINE_LARGEST_TYPE
 #define DEFINE_LARGEST_TYPE
 
-#include "TypeList.h"
 #include "IfThenElse.h"
 #include "Front.h"
 #include "PopFront.h"
