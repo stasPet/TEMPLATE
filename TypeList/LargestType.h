@@ -1,0 +1,6 @@
+#ifndef DEFINE_LARGEST_TYPE
+#define DEFINE_LARGEST_TYPE
+
+
+
+#endif // !DEFINE_LARGEST_TYPE

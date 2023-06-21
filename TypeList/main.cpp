@@ -1,9 +1,9 @@
-#include "ReplaceFirstElement.h"
+#include "IfThenElse.h"
 
-using MyList = TypeList< bool, char, short, int, double >;
+// using MyList = TypeList< bool, char, short, int, double >;
 
 int main()
 {
-  ReplaceFirstElement< int, MyList > t;
+  IfThenElse< false, int, double >::Type t;
   return 0;
 }
