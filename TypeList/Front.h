@@ -9,7 +9,7 @@ struct Front;
 template< typename Head, typename ... Tail >
 struct Front< TypeList< Head, Tail ... > >
 {
-  using Type = TypeList< Head >;
+  using Type = Head;
 };
 
 #endif

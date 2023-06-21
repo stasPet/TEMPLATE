@@ -1,9 +1,9 @@
-#include "IfThenElse.h"
+#include "LargestType.h"
 
-// using MyList = TypeList< bool, char, short, int, double >;
+using MyList = TypeList< bool, char, short, char[ 256 ], int, double >;
 
 int main()
 {
-  IfThenElse< false, int, double >::Type t;
+  LargestType< MyList >::Type t;
   return 0;
 }
