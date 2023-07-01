@@ -1,23 +1,29 @@
+#include <iostream>
 #include <vector>
 #include <string>
+#include <thread>
 
 #include "Alexandrescu/Allocator.h"
 
-int main()
+void foo()
 {
   {
-  std::vector< std::string, Loki::LokiAllocator< std::string > > vector;
+    std::vector< std::string, Loki::LokiAllocator< std::string > > vector;
 
-  for ( unsigned i{}; i < 1000 * 1000 * 5; ++i )
-    vector.push_back( "Hello World!" );
+    for ( unsigned i{}; i < 1000 * 1000 * 5; ++i )
+      vector.push_back( "Hello World!" );
   }
+}
 
- {
-  std::vector< std::string, Loki::LokiAllocator< std::string > > vector;
+int main()
+{
+  std::thread t1{ foo };
+  std::thread t2{ foo };
 
-  for ( unsigned i{}; i < 1000 * 1000 * 5; ++i )
-    vector.push_back( "Hello World!" );
-  }
+  t1.detach();
+  t2.detach();
+
+  while ( true );
 
   return 0;
 }
