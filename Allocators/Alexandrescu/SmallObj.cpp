@@ -1033,7 +1033,7 @@ void * DefaultAllocator( std::size_t numBytes, bool doThrow )
 #else
     void * p = ::std::malloc( numBytes );
     if ( doThrow && ( NULL == p ) )
-        throw std::bad_alloc();
+        throw std::exception();
     return p;
 #endif
 }
@@ -1131,9 +1131,9 @@ void * SmallObjAllocator::Allocate( std::size_t numBytes, bool doThrow )
 #ifdef _MSC_VER
         throw std::exception( "could not allocate small object" );
 #else
-        // GCC did not like a literal string passed to std::bad_alloc.
+        // GCC did not like a literal string passed to std::exception.
         // so just throw the default-constructed exception.
-        throw std::bad_alloc();
+        throw std::exception();
 #endif
     }
     return place;

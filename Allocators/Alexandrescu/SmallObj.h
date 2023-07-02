@@ -113,7 +113,7 @@ namespace Loki
          levels of exception safety is because it is used by both the nothrow
          and throwing new operators.  The underlying implementation will never
          throw of its own accord, but this can decide to throw if it does not
-         allocate.  The only exception it should emit is std::bad_alloc.
+         allocate.  The only exception it should emit is std::exception.
 
          @par Allocation Failure
          If it does not allocate, it will call TrimExcessMemory and attempt to
@@ -454,12 +454,12 @@ namespace Loki
         
     public:
 
-        /// Throwing single-object new throws bad_alloc when allocation fails.
+        /// Throwing single-object new throws exception when allocation fails.
 #ifdef _MSC_VER
         /// @note MSVC complains about non-empty exception specification lists.
         static void * operator new ( std::size_t size )
 #else
-        static void * operator new ( std::size_t size ) throw ( std::bad_alloc )
+        static void * operator new ( std::size_t size ) throw ( std::exception )
 #endif
         {
             typename MyThreadingModel::Lock lock;
@@ -507,13 +507,13 @@ namespace Loki
 
 #ifdef LOKI_SMALL_OBJECT_USE_NEW_ARRAY
 
-        /// Throwing array-object new throws bad_alloc when allocation fails.
+        /// Throwing array-object new throws exception when allocation fails.
 #ifdef _MSC_VER
         /// @note MSVC complains about non-empty exception specification lists.
         static void * operator new [] ( std::size_t size )
 #else
         static void * operator new [] ( std::size_t size )
-            throw ( std::bad_alloc )
+            throw ( std::exception )
 #endif
         {
             typename MyThreadingModel::Lock lock;

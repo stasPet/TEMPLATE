@@ -5,7 +5,8 @@
 #include <chrono>
 #include <list>
 
-#include "Alexandrescu/Allocator.h"
+// #include "Alexandrescu/Allocator.h"
+#include "Alexandrescu/SmallObj.h"
 
 using namespace std::chrono_literals;
 
@@ -26,26 +27,40 @@ struct TestStruct
   }
 };
 
-void foo()
-{
-  {
-    std::vector< TestStruct, Loki::LokiAllocator< TestStruct > > vector;
-    std::list< TestStruct, Loki::LokiAllocator< TestStruct > > list;
+//void foo()
+//{
+//  {
+//    std::vector< TestStruct, Loki::LokiAllocator< TestStruct > > vector;
+//    std::list< TestStruct, Loki::LokiAllocator< TestStruct > > list;
+//
+//    for ( unsigned i{}; i < 10; ++i )
+//    {
+//      // vector.emplace_back( i );
+//      list.emplace_back( i );
+//    }
+//  }
+//}
 
-    for ( unsigned i{}; i < 10; ++i )
-    {
-      // vector.emplace_back( i );
-      list.emplace_back( i );
-    }
-  }
-}
+struct MyAllocator : public Loki::SmallObjAllocator
+{
+  MyAllocator( std::size_t pageSize, std::size_t maxObjectSize,
+    std::size_t objectAlignSize ) :
+      Loki::SmallObjAllocator{ pageSize, maxObjectSize, objectAlignSize } {}
+};
 
 int main()
 {
-  while ( true )
-  {
-    std::thread{ foo }.detach();
-  }
+  MyAllocator smallObjAllocator{ 1, 1, 1 };
+
+  smallObjAllocator.Allocate( 1, true );
+
+  //std::vector< TestStruct, Loki::LokiAllocator< TestStruct > > vector;
+  //vector.emplace_back( 0 );
+
+  //while ( true )
+  //{
+  //  std::thread{ foo }.detach();
+  //}
 
   return 0;
 }
